@@ -1,0 +1,20 @@
+<resources>
+	<string name="app_name">GroovySwissKnifeAndroidApp</string>
+
+	<string name="main.play">Play</string>
+	<string name="main.cardSet">Edit cards</string>
+
+	<string name="title">Simple memorization game</string>
+	<string name="action_settings">Settings</string>
+	<string name="title_activity_card">Guess</string>
+
+	<string name="title_activity_card.ok">OK</string>
+	<string name="empty">(empty)</string>
+	<string name="title_activity_card_set">Edit cards</string>
+
+	<string name="cardset_template1_hint">Upper Textbox hint</string>
+	<string name="cardset_template2_hint">Lower Textbox hint</string>
+	<string name="save">Save</string>
+	<string name="cardset_add_card">Add new card</string>
+	<string name="title_activity_card_edit">Edit card</string>
+</resources>
