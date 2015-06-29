@@ -40,11 +40,10 @@
 
 -dontwarn android.**
 
--keep class ch.codebulb.groovyswissknifeandroidapp.**
--keepclassmembers class ch.codebulb.groovyswissknifeandroidapp.** {*;}
-
 -dontwarn groovyjarjaropenbeans.**
-
-# Include your own base package name if used with @CompileDynamic
 -keep class groovyjarjaropenbeans.**
 -keepclassmembers class groovyjarjaropenbeans.** {*;}
+
+# Include your own base package name if used with @CompileDynamic
+-keep class ch.codebulb.groovyswissknifeandroidapp.**
+-keepclassmembers class ch.codebulb.groovyswissknifeandroidapp.** {*;}
