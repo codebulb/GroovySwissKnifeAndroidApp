@@ -21,19 +21,34 @@ class ViewAttribute {
     }
 
     public static ViewAttribute text(View view) {
-        return new ViewAttribute(view, Type.text())
+        return new ViewAttribute(view, Type.text)
     }
 
     public static ViewAttribute enabled(View view) {
-        return new ViewAttribute(view, Type.enabled())
+        return new ViewAttribute(view, Type.enabled)
     }
 
     public static ViewAttribute hint(View view) {
-        return new ViewAttribute(view, Type.hint())
+        return new ViewAttribute(view, Type.hint)
     }
 
+    /*
+     * Should be an enum, but for unknown reasons, using an enum results in
+     *
+     * AndroidRuntime? FATAL EXCEPTION: main
+     * java.lang.ExceptionInInitializerError
+     * Caused by: java.lang.IllegalArgumentException: This class has been compiled with a super class which is
+     * binary incompatible with the current super class found on classpath. You should recompile this class with the new version.
+     *
+     *  at runtime when app buildType is {minifyEnabled true}
+     */
+    @TupleConstructor
     public static class Type {
-        public static Type text() {
+        private static final Type text = text()
+        private static final Type enabled = enabled()
+        private static final Type hint = hint()
+
+        private static Type text() {
             new Type(true, { ViewAttribute viewAttribute, Object value ->
                 viewAttribute.asTextView.text = value != null ? value.toString() : ''
                 // set cursor
@@ -43,7 +58,7 @@ class ViewAttribute {
             })
         }
 
-        public static Type enabled() {
+        private static Type enabled() {
             new Type(false, { ViewAttribute viewAttribute, Object value ->
                 viewAttribute.view.enabled = (boolean) value
                 if (!viewAttribute.view.enabled) {
@@ -52,7 +67,7 @@ class ViewAttribute {
             })
         }
 
-        public static Type hint() {
+        private static Type hint() {
             new Type(false, { ViewAttribute viewAttribute, Object value ->
                 viewAttribute.asTextView.hint = value.toString()
             })
@@ -60,10 +75,5 @@ class ViewAttribute {
 
         boolean updateModelText
         Closure updateView
-
-        private Type(boolean updateModelText, Closure updateView) {
-            this.updateModelText = updateModelText
-            this.updateView = updateView
-        }
     }
 }
